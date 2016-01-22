@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const dbURI = 'mongodb://localhost/lillebror';
 
+mongoose.Promise = require('bluebird');
+
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected',function(){
@@ -15,6 +17,7 @@ mongoose.connection.on('error',function(err){
 mongoose.connection.on('disconnected',function(){
     console.log('Mongoose disconnected'); 
 });
+
 
 process.on('SIGINT',function(){
     mongoose.connection.close(function(){
