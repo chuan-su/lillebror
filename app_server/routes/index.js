@@ -4,6 +4,10 @@ var express = require('express'),
 apiRoutes = function(){
     var router = express.Router();
 
+    router.get('/search',function(req,res){
+        res.status(200).json('it works').end;
+    });
+    
     return router;
 };
 
