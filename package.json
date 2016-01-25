@@ -12,7 +12,10 @@
     "express": "~4.2.0",
     "mongoose": "^4.3.6",
     "morgan": "~1.0.0",
+    "request": "^2.67.0",
     "static-favicon": "~1.0.0",
+    "xml-nodes": "^0.1.5",
+    "xml-stream": "^0.4.5",
     "xml2js": "^0.4.16",
     "xml2json": "^0.9.0"
   },

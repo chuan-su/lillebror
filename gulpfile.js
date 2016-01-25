@@ -7,6 +7,40 @@ gulp.task('default',function(){
 
 });
 
+gulp.task('test',function(){
+    /*
+    var request = require('request');
+    var xmlNodes = require('xml-nodes');
+
+    request('http://news.yahoo.com/rss/entertainment')
+        .pipe(xmlNodes('item'))
+        .pipe(process.stdout); 
+     */
+    var XmlStream = require('xml-stream');
+    var fs = require('fs');
+    
+    var stream = fs.createReadStream('./data/test.xml');
+    var xml = new XmlStream(stream);
+    xml.preserve('word',true);
+    var data = '';
+
+    xml.on('startElement:word',function(word){
+        data = '';
+    });
+    
+    xml.on('data',function(chunk){
+        data += chunk;
+    });
+    xml.on('endElement:word',function(word){
+       
+        data += '</word>';
+        console.log(data);
+        data = '';
+        console.log('............');
+    });
+    
+});
+
 gulp.task('import',function(){
     
     var parser = require('xml2json'),
