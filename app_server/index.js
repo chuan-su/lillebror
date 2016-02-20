@@ -1,13 +1,9 @@
-const express = require('express'),
-      path = require('path'),
+const path = require('path'),
       favicon = require('static-favicon'),
       logger = require('morgan'),
-      bodyParser = require('body-parser');
-
-
-const app = express();
-
-require('./models');
+      bodyParser = require('body-parser'),
+      express = require('express'),
+      app = express();
 
 app.use(favicon());
 app.use(logger('dev'));
