@@ -39,3 +39,6 @@ node_modules
 # emacs temp files
 *~
 .#*
+
+folkets_en_sv_public.json
+folkets_sv_en_public.json
