@@ -1,12 +1,10 @@
 const express = require('express');
-      
+const Note = require('../controllers/note');
 
 var apiRoutes = function(){
     var router = express.Router();
 
-    router.get('/search',function(req,res){
-        res.status(200).json('it works').end;
-    });
+    router.post('/notes', Note.newNote);
     
     return router;
 };
