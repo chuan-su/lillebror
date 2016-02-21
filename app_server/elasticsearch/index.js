@@ -11,17 +11,17 @@ const indexName = 'lillebror';
 
 module.exports = {
     client: client,
-    indexExists: function(){
+    indexExists() {
         return client.indices.exists({index: indexName});
     },
     
-    deleteIndex: function(){
+    deleteIndex() {
         return this.indexExists().then(exists => {
             if(exists) return client.indices.delete({index:indexName});
             return true;
         });
     },
-    initIndex: function(){
+    initIndex() {
         return this.deleteIndex()
             .then(() => {
                 return client.indices.create({
@@ -49,7 +49,7 @@ module.exports = {
                 }); 
             });
     },
-    initNoteTypeMapping: function(){
+    initNoteTypeMapping() {
         return client.indices.putMapping({
             index: indexName,
             type: 'notes',

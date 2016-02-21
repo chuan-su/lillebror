@@ -1,3 +1,5 @@
+'use strict';
+
 const expect = require('chai').expect,
       request = require('supertest'),
       Note = require('../../app_server/models/note'),
@@ -47,7 +49,7 @@ describe('Note REST API test',() => {
                     .get('/api/notes/_search?verb=gär')
                     .expect(200)
                     .end((err,res) => {
-                        var data = res.body;
+                        let data = res.body;
                         expect(data).to.have.length.above(0);
                         expect(data[0]['_id']).to.equal(noteId);
                         done();
