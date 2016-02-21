@@ -1,7 +1,12 @@
 const Promise = require('bluebird');
 const elasticsearch = require('elasticsearch');
 const client = new elasticsearch.Client({
-    host: 'localhost:9200'
+    host: 'localhost:9200',
+    log: {
+        type: 'file',
+        level: 'error',
+        path: '../../elasticsearch.log'
+    }
 });
 const indexName = 'lillebror';
 

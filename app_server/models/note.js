@@ -11,15 +11,29 @@ var noteSchema = new mongoose.Schema({
 });
 
 noteSchema.post('save',function(note){
-    cacheStore.upsert(note.get('id'),note.toObject(),function(err,res){console.log(err);});
+    cacheStore.upsert(
+        note.get('id'),
+        note.toObject(),
+        function(err,res){
+            if(err) console.log('es index error',err);
+        });
 });
 
 noteSchema.post('findOneAndUpdate',function(note){
-    cacheStore.upsert(note.get('id'),note.toObject(),function(err,res){console.log(err);});
+    cacheStore.upsert(
+        note.get('id'),
+        note.toObject(),
+        function(err,res){
+            if(err) console.log('es index error',err);
+        });
 });
 
 noteSchema.post('findOneAndRemove',function(note){
-    cacheStore.delete(note.get('id'),function(err,res){console,log(err);});    
+    cacheStore.delete(
+        note.get('id'),
+        function(err,res){
+            if(err) console,log('es delete error',err);
+        });    
 });
 
 module.exports = mongoose.model('Note',noteSchema);
