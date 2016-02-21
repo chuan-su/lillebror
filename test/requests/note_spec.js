@@ -27,7 +27,6 @@ describe('Note REST API test',function(){
                 })
                 .catch(done);
         });
-
         it('update a note',function(done){
             request(app)
                 .put(`/api/notes/${noteId}`)
@@ -37,13 +36,13 @@ describe('Note REST API test',function(){
                 })
                 .expect(200,done);
         });
-        it.only('delete a note',function(done){
+        it('delete a note',function(done){
             request(app)
                 .delete(`/api/notes/${noteId}`)
                 .expect(200,done);
         });
-    });
-    it('list notes from last 5 days');
-    it('search notes by its associated vocabularies');
-    it('list notes by tags');
+        it('list notes from last 5 days');
+        it('search notes by its associated vocabularies');
+        it('list notes by tags');
+    });    
 });
