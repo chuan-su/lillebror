@@ -1,4 +1,3 @@
-const Promise = require('bluebird');
 const elasticsearch = require('elasticsearch');
 const client = new elasticsearch.Client({
     host: 'localhost:9200',
@@ -18,7 +17,7 @@ module.exports = {
     deleteIndex: function(){
         return this.indexExists().then(function(exists){
             if(exists) return client.indices.delete({index:indexName});
-            return Promise.resolve();
+            return true;
         });
     },
     initIndex: function(){
@@ -60,14 +59,24 @@ module.exports = {
                         index: 'not_analyzed'
                     },
                     vocabularies: {
-                        type: 'string',
-                        index: 'analyzed',
-                        analyzer: 'autocomplete'
+                        type: 'nested',
+                        include_in_parent: true,
+                        properties:{
+                            value: {
+                                type: 'string',
+                                analyzer: 'autocomplete'
+                            }
+                        }
                     },
                     tags: {
-                        type: 'string',
-                        index: 'analyzed',
-                        analyzer: 'standard'
+                        type: 'nested',
+                        include_in_parent: true,
+                        properties:{
+                            value:{
+                                type: 'string',
+                                analyzer: 'standard'
+                            }
+                        }
                     },
                     createdAt: { type: 'date'},
                     updatedAt: {type: 'date'},
