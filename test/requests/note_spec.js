@@ -41,8 +41,20 @@ describe('Note REST API test',function(){
                 .delete(`/api/notes/${noteId}`)
                 .expect(200,done);
         });
+        it('search notes by its associated vocabularies',function(done){
+            setTimeout(function(){
+                request(app)
+                    .get('/api/notes/_search?verb=gär')
+                    .expect(200)
+                    .end(function(err,res){
+                        var data = res.body;
+                        expect(data).to.have.length.above(0);
+                        expect(data[0]['_id']).to.equal(noteId);
+                        done();
+                    });
+            },1000);
+        });
         it('list notes from last 5 days');
-        it('search notes by its associated vocabularies');
         it('list notes by tags');
     });    
 });

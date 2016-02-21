@@ -7,6 +7,7 @@ var apiRoutes = function(){
     router.post('/notes', Note.newNote);
     router.put('/notes/:id',Note.updateNote);
     router.delete('/notes/:id',Note.deleteNote);
+    router.get('/notes/_search',Note.searchNote);
     return router;
 };
 

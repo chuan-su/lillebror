@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const Note = require('../models/note');
+const elasticsearch = require('../elasticsearch/types/note');
 
 module.exports = {
     newNote: function(req,res){
@@ -28,6 +29,16 @@ module.exports = {
         Note.findByIdAndRemove(id,req.body)
             .then(function(note){
                 res.status(200).json(note).end();
+            })
+            .catch(function(err){
+                res.status(500).json({error: err.message}).end();
+            });
+    },
+    searchNote: function(req,res){
+        var query = req.param('verb');
+        elasticsearch.search(query)
+            .then(function(notes){
+                res.status(200).json(notes).end();
             })
             .catch(function(err){
                 res.status(500).json({error: err.message}).end();

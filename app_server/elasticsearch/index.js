@@ -78,7 +78,7 @@ module.exports = {
                             }
                         }
                     },
-                    createdAt: { type: 'date'},
+                    createdAt: {type: 'date'},
                     updatedAt: {type: 'date'},
                     reviewedAt: {type: 'date'}
                 }
