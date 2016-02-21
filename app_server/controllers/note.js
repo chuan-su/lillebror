@@ -1,8 +1,10 @@
+const _ = require('lodash');
 const Note = require('../models/note');
 
 module.exports = {
     newNote: function(req,res){
-        Note.create({body: req.body.body,vocabularies: req.body.vocabularies, tags: req.body.tags})
+        var noteToCreate = _.pick(req.body,['body','vocabularies','tags']);
+        Note.create(noteToCreate)
             .then(function(note){
                 res.status(200).json(note).end();
             })
@@ -12,7 +14,8 @@ module.exports = {
     },
     updateNote: function(req,res){
         var id = req.param('id');
-        Note.findByIdAndUpdate(id,req.body,{new: true})
+        var noteToUpdate = _.pick(req.body,['body','vocabularies','tags']);
+        Note.findByIdAndUpdate(id,noteToUpdate,{new: true})
             .then(function(note){
                 res.status(200).json(note).end();
             })
