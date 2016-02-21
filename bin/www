@@ -1,22 +1,16 @@
 #!/usr/bin/env node
 const debug = require('debug')('lillebror'),
-      dbURI = 'mongodb://localhost/lillebror',
-      mongoose = require('../app_server/models');
+      mongoose = require('../app_server/models'),
+      dbURI = 'mongodb://localhost/lillebror';
 
-mongoose.connection.on('connected',function(){
-    console.log(`Mongoose connected to ${dbURI}`);
-});
+mongoose.connection.on('connected',() => console.log(`Mongoose connected to ${dbURI}`));
 
-mongoose.connection.on('error',function(err){
-    console.log('Mongoose connection error',err);
-});
+mongoose.connection.on('error', err => console.log('Mongoose connection error',err));
 
-mongoose.connection.on('disconnected',function(){
-    console.log('Mongoose disconnected'); 
-});
+mongoose.connection.on('disconnected',() => console.log('Mongoose disconnected'));
 
-process.on('SIGINT',function(){
-    mongoose.connection.close(function(){
+process.on('SIGINT',() => {
+    mongoose.connection.close( () => {
         console.log('Mongoose disconnected through app termination');
         process.exit(0);
     });
@@ -28,7 +22,7 @@ const app = require('../app_server');
 
 app.set('port', process.env.PORT || 3000);
 
-const server = app.listen(app.get('port'), function() {
+const server = app.listen(app.get('port'), () => {
   console.log('app started');
-  debug('Express server listening on port ' + server.address().port);
+  debug(`Express server listening on port ${server.address().port}`);
 });
