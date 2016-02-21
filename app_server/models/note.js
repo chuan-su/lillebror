@@ -10,28 +10,28 @@ var noteSchema = new mongoose.Schema({
     reviewedAt: {type: Date, default: Date.now}
 });
 
-noteSchema.post('save',function(note){
+noteSchema.post('save',note => {
     cacheStore.upsert(
         note.get('id'),
         note.toObject(),
-        function(err,res){
+        (err,res) => {
             if(err) console.log('es index error',err);
         });
 });
 
-noteSchema.post('findOneAndUpdate',function(note){
+noteSchema.post('findOneAndUpdate',note => {
     cacheStore.upsert(
         note.get('id'),
         note.toObject(),
-        function(err,res){
+        (err,res) => {
             if(err) console.log('es index error',err);
         });
 });
 
-noteSchema.post('findOneAndRemove',function(note){
+noteSchema.post('findOneAndRemove',note => {
     cacheStore.delete(
         note.get('id'),
-        function(err,res){
+        (err,res) => {
             if(err) console,log('es delete error',err);
         });    
 });
