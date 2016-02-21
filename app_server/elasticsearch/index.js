@@ -14,15 +14,16 @@ module.exports = {
     indexExists: function(){
         return client.indices.exists({index: indexName});
     },
+    
     deleteIndex: function(){
-        return this.indexExists().then(function(exists){
+        return this.indexExists().then(exists => {
             if(exists) return client.indices.delete({index:indexName});
             return true;
         });
     },
     initIndex: function(){
         return this.deleteIndex()
-            .then(function(){
+            .then(() => {
                 return client.indices.create({
                     index: indexName,
                     body: {
