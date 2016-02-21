@@ -5,8 +5,8 @@ const expect = require('chai').expect,
 
 require('../spec_helper');
 
-describe('Note REST API test',function(){
-    it('create a new note',function(done){
+describe('Note REST API test',() => {
+    it('create a new note',done => {
         request(app)
             .post('/api/notes')
             .send({
@@ -15,19 +15,19 @@ describe('Note REST API test',function(){
             })
             .expect(200,done);
     });
-    describe('update,delete note',function(){
+    describe('update,delete note',() => {
         var noteId;
-        beforeEach(function(done){
+        beforeEach( done => {
             Note.create({body:"Jag kommer gärna. I would love to come",
                          vocabularies: ['gärna']})
-                .then(function(note){
+                .then(note => {
                     noteId = note.get('id');
                     expect(noteId).to.not.be.null;
                     done();
                 })
                 .catch(done);
         });
-        it('update a note',function(done){
+        it('update a note',done => {
             request(app)
                 .put(`/api/notes/${noteId}`)
                 .send({
@@ -36,17 +36,17 @@ describe('Note REST API test',function(){
                 })
                 .expect(200,done);
         });
-        it('delete a note',function(done){
+        it('delete a note',done => {
             request(app)
                 .delete(`/api/notes/${noteId}`)
                 .expect(200,done);
         });
-        it('search notes by its associated vocabularies',function(done){
-            setTimeout(function(){
+        it('search notes by its associated vocabularies',done => {
+            setTimeout(() => {
                 request(app)
                     .get('/api/notes/_search?verb=gär')
                     .expect(200)
-                    .end(function(err,res){
+                    .end((err,res) => {
                         var data = res.body;
                         expect(data).to.have.length.above(0);
                         expect(data[0]['_id']).to.equal(noteId);

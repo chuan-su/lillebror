@@ -2,14 +2,10 @@ const _ = require('lodash');
 const client = require('..').client;
 
 module.exports = {
-    upsert: function(id,doc,cb){
+    upsert: (id,doc,cb) => {
         var note = _.pick(doc,['body','vocabularies','tags','createdAt','updatedAt','reviewedAt']);
-        note.vocabularies = _.map(note.vocabularies,function(verb){
-            return {value: verb};
-        });
-        note.tags = _.map(note.tags,function(tag){
-            return {value: tag};
-        });
+        note.vocabularies = _.map(note.vocabularies,verb => ({value: verb}));
+        note.tags = _.map(note.tags,tag => ({value: tag}));
         client.index({
             index: 'lillebror',
             type: 'notes',
@@ -17,14 +13,14 @@ module.exports = {
             body: note
         },cb);
     },
-    delete: function(id,cb){
+    delete: (id,cb) => {
         client.delete({
             index: 'lillebror',
             type: 'notes',
             id: id
         },cb);
     },
-    search: function(q){
+    search: (q) => {
         return client.search({
             index: 'lillebror',
             type: 'notes',
@@ -35,9 +31,6 @@ module.exports = {
                     }
                 }
             }
-        }).then(function(resp){
-            var hits = resp.hits.hits;
-            return hits;
-        });
+        }).then((resp) => resp.hits.hits);
     }
 };
