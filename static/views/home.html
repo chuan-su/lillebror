@@ -1,0 +1,12 @@
+<div layout="column" layout-align="center center" >
+    <md-list>
+        <md-list-item class="md-3-line" ng-repeat="note in notes">
+            <div class="md-list-item-text" layout="column">
+                <h3>{{note.vocabularies[0]}}</h3>
+                <p>
+                    {{note.body}}
+                </p>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>
