@@ -6,12 +6,14 @@ const Note = require('../controllers/note');
 var apiRoutes = () => {
     let router = express.Router();
 
-    router.post('/notes', Note.newNote);
-    router.put('/notes/:id',Note.updateNote);
-    router.delete('/notes/:id',Note.deleteNote);
-    router.get('/notes/_search',Note.searchNote);
+    router.post('/notes', Note.new);
+    router.put('/notes/:id',Note.update);
+    router.delete('/notes/:id',Note.delete);
+    router.get('/notes',Note.list);
+    router.get('/notes/_search',Note.search);
     
     return router;
 };
 
 module.exports = apiRoutes;
+
