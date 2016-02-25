@@ -1,3 +1,4 @@
 {
-    "directory" : "static/lib"
+    "cwd" : "client/",
+    "directory" : "lib/"
 }
