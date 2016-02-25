@@ -1,3 +1,4 @@
+'use strict';
 const mongoose = require(__dirname);
 const cacheStore = require('../elasticsearch/types/note');
 
@@ -36,4 +37,21 @@ noteSchema.post('findOneAndRemove',note => {
         });    
 });
 
+noteSchema.statics.listBy = (date,options) => {
+    date = date || new Date();
+    let limit = options.limit || 20,
+        range = options.range || 0,
+        sort = options.sort || 'updatedAt',
+        direction = options.direction || -1;
+    // this is binded to lexical scope in es6 arrow methods
+    // so use mongoose.models.Note to retrieve Model Query methods.
+    return mongoose.models.Note.find({updatedAt:{$lt:date}})
+        .sort({sort : direction})
+        .skip(range*limit)
+        .limit(limit)
+        .lean()
+        .exec()
+        .then(results => results)
+        .catch(error => {throw error;});
+};
 module.exports = mongoose.model('Note',noteSchema);
