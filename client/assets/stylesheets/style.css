@@ -1,0 +1,16 @@
+body {
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+    color:white;
+}
