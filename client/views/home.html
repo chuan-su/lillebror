@@ -1,10 +1,13 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="row">
-            <a class="btn btn-success pull-right" href="#/notes/new">New</a>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+                <input ng-model="query" ng-change="searchNotes()" class="form-control" type="text" placeholder="Search notes">
+            </div>
         </div>
         <br>
-        <div class="row">
+        <div class="row" ng-show="notes">
             <ul class="list-group">
                 <li ng-repeat="note in notes track by note._id" class="list-group-item">
                     <h4 class="list-group-item-heading">
