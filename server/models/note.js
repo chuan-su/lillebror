@@ -46,7 +46,7 @@ noteSchema.statics.listBy = (date,options) => {
     // this is binded to lexical scope in es6 arrow methods
     // so use mongoose.models.Note to retrieve Model Query methods.
     return mongoose.models.Note.find({updatedAt:{$lt:date}})
-        .sort({sort : direction})
+        .sort({updatedAt: direction})
         .skip(range*limit)
         .limit(limit)
         .lean()

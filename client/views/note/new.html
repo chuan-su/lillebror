@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-6">
+        <form ng-submit="addNote()">
+            <fieldset class="form-group">
+                <label>Note</label>
+                <textarea ng-model="note.body" class="form-control" rows="3"></textarea>
+            </fieldset>
+            <fieldset class="form-group">
+                <label>Vocabularies</label>
+                <tags-input replace-spaces-with-dashes=false ng-model="note.vocabularies" placeholder="Add a verb"></tags-input>
+            </fieldset>
+            <fieldset class="form-group">
+                <label>Tags</label>
+                <tags-input ng-model="note.tags"></tags-input>
+            </fieldset>
+            <div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <label>Recently added</label>
+        <ul class="list-group">
+            <li ng-repeat="note in notes track by note._id" class="list-group-item">
+                <h4 class="list-group-item-heading">
+                    <a class="pull-right"><i class="fa fa-pencil fa-fw"></i></a>
+                    <span ng-repeat="verb in note.vocabularies">{{verb}}{{$last ? '' : ','}}</span>
+                </h4>
+                <p class="small">{{note.body}}</p>
+                <div>
+                    <i class="fa fa-tags"></i>
+                    <span ng-repeat="tag in note.tags">
+                        <span class="label label-success" >{{tag}}</span>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
