@@ -4,13 +4,26 @@
         .controller('HomeCtrl',HomeCtrl);
     HomeCtrl.$inject = ['$scope','NoteService'];
     function HomeCtrl($scope,NoteService){
-        NoteService.list()
-            .then(function(res){
-                $scope.notes = res.data;
-            })
-            .catch(function(err){
-                debugger;
-            });
+        refresh();
+        function refresh(){
+            NoteService.list()
+                .then(function(res){
+                    $scope.notes = res.data;
+                })
+                .catch(function(err){
+                    debugger;
+                });
+        };
+        
+        $scope.deleteNote = function(id){
+            NoteService.delete(id)
+                .catch(function(err){
+                    debugger;
+                })
+                .then(function(){
+                    return refresh();
+                });
+        };
     }
     
 })(window,angular);

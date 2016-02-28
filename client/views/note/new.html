@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <form ng-submit="addNote()">
             <fieldset class="form-group">
-                <label>Note</label>
+                <label><i class="fa fa-pencil"></i>&nbsp Note</label>f
                 <textarea ng-model="note.body" class="form-control" rows="3"></textarea>
             </fieldset>
             <fieldset class="form-group">
@@ -14,12 +14,12 @@
                 <tags-input ng-model="note.tags"></tags-input>
             </fieldset>
             <div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-success">Save</button>
             </div>
         </form>
     </div>
     <div class="col-md-6">
-        <label>Recently added</label>
+        <!-- <label>Recently added</label> -->
         <ul class="list-group">
             <li ng-repeat="note in notes track by note._id" class="list-group-item">
                 <h4 class="list-group-item-heading">

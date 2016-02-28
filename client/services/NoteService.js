@@ -8,6 +8,8 @@
         return {
             add: add,
             list: list,
+            get: get,
+            update: update,
             delete: remove 
         };
         function add(note){
@@ -15,6 +17,12 @@
         };
         function list(){
             return $http({method: 'GET',url:'/api/notes'});
+        };
+        function get(id){
+            return $http({method:'GET',url:`/api/notes/${id}`});
+        };
+        function update(note){
+            return $http({method: 'PUT',url:`/api/notes/${note._id}`,data: note});
         };
         function remove(id){
             return $http({method: 'DELETE',url: `/api/notes/${id}`});

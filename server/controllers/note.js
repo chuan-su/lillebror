@@ -3,6 +3,12 @@ const Note = require('../models/note');
 const elasticsearch = require('../elasticsearch/types/note');
 
 module.exports = {
+    get(req,res) {
+        var id = req.params.id;
+        Note.findById(id)
+            .then(note => res.status(200).json(note).end())
+            .catch(err => res.status(500).json({error: err.message}).end());
+    },
     new(req,res) {
         var noteToCreate = _.pick(req.body,['body','vocabularies','tags']);
         Note.create(noteToCreate)

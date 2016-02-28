@@ -9,7 +9,7 @@
                 <li ng-repeat="note in notes track by note._id" class="list-group-item">
                     <h4 class="list-group-item-heading">
                         <span class="pull-right">
-                            <a class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-info btn-xs" href="#/notes/{{note._id}}"><i class="fa fa-pencil"></i></a>
                         </span>
                         <span ng-repeat="verb in note.vocabularies">{{verb}}{{$last ? '' : ','}}</span>
                     </h4>
@@ -17,6 +17,9 @@
                     <div>
                         <span ng-repeat="tag in note.tags">
                             <span class="label label-success" >{{tag}}</span>
+                        </span>
+                        <span class="pull-right">
+                            <a class="btn btn-danger btn-xs" ng-click="deleteNote(note._id)"><i class="fa fa-trash"></i></a>
                         </span>
                     </div>
                 </li>

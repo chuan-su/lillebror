@@ -10,6 +10,10 @@
             .when('/notes/new',{
                 controller: 'AddNoteCtrl',
                 templateUrl: 'views/note/new.html'
+            })
+            .when('/notes/:id',{
+                controller: 'EditNoteCtrl',
+                templateUrl: 'views/note/edit.html'
             });
     });
     app.controller('AppCtrl',function($scope){
