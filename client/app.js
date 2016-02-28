@@ -1,5 +1,5 @@
 (function(window,angular,undefined){
-    var app = angular.module('lillebror',['ngRoute','ngTagsInput','lillebror.services']);
+    var app = angular.module('lillebror',['ngRoute','ngTagsInput','xeditable','lillebror.services']);
     
     app.config(function($routeProvider){
         $routeProvider

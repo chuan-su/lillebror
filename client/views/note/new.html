@@ -6,11 +6,11 @@
                 <textarea ng-model="note.body" class="form-control" rows="3"></textarea>
             </fieldset>
             <fieldset class="form-group">
-                <label>Vocabularies</label>
+                <label><i class="fa fa-tags"></i>&nbspVocabularies</label>
                 <tags-input replace-spaces-with-dashes=false ng-model="note.vocabularies" placeholder="Add a verb"></tags-input>
             </fieldset>
             <fieldset class="form-group">
-                <label>Tags</label>
+                <label><i class="fa fa-tags"></i>&nbsp Tags</label>
                 <tags-input ng-model="note.tags"></tags-input>
             </fieldset>
             <div>
@@ -23,12 +23,13 @@
         <ul class="list-group">
             <li ng-repeat="note in notes track by note._id" class="list-group-item">
                 <h4 class="list-group-item-heading">
-                    <a class="pull-right"><i class="fa fa-pencil fa-fw"></i></a>
+                    <span class="pull-right">
+                        <a class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                    </span>
                     <span ng-repeat="verb in note.vocabularies">{{verb}}{{$last ? '' : ','}}</span>
                 </h4>
                 <p class="small">{{note.body}}</p>
                 <div>
-                    <i class="fa fa-tags"></i>
                     <span ng-repeat="tag in note.tags">
                         <span class="label label-success" >{{tag}}</span>
                     </span>
