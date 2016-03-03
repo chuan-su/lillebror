@@ -1,11 +1,12 @@
 (function(window,angular,undefined){
-    var app = angular.module('lillebror',['ngRoute','ngTagsInput','xeditable','lillebror.services']);
+    var app = angular.module('lillebror',['ngRoute','ui.bootstrap','ngTagsInput','xeditable','lillebror.services']);
     
     app.config(function($routeProvider){
         $routeProvider
             .when('/',{
                 controller: 'HomeCtrl',
-                templateUrl: 'views/home.html'
+                templateUrl: 'views/home.html',
+                reloadOnSearch: false
             })
             .when('/notes/new',{
                 controller: 'AddNoteCtrl',

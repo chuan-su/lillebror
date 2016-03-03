@@ -2,14 +2,41 @@
     angular
         .module('lillebror')
         .controller('HomeCtrl',HomeCtrl);
-    HomeCtrl.$inject = ['$scope','NoteService'];
+    HomeCtrl.$inject = ['$scope','$location','$route','NoteService'];
     
-    function HomeCtrl($scope,NoteService){
-        refresh();
+    function HomeCtrl($scope,$location,$route,NoteService){
+        $scope.currentPage = 1;
+        $scope.pagination = {
+            maxSize: 5,
+            numPerPage: 2,
+            boundaryLinks: true,
+           
+            goto: function(){
+                debugger;
+                $location.search('page',$scope.currentPage);
+            }
+        };
+       
         function refresh(){
-            NoteService.list()
+            var page = $location.search().page;
+            if(page){
+                $scope.currentPage = page;
+
+                debugger;
+            }
+            listNotes();
+        };
+        $scope.$on('$routeUpdate',refresh);
+        
+        refresh();
+
+        function listNotes(){
+            debugger;
+            NoteService.list(($scope.currentPage-1))
                 .then(function(res){
-                    $scope.notes = res.data;
+                    var result = res.data;
+                    $scope.notes = result.notes;
+                    $scope.pagination.totalItems = result.count;
                 })
                 .catch(function(err){
                     debugger;

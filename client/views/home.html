@@ -6,7 +6,22 @@
                 <input ng-model="query" ng-change="searchNotes()" class="form-control" type="text" placeholder="Search notes">
             </div>
         </div>
-        <br>
+        <div class="row">
+            <div class="text-center">
+                <uib-pagination ng-if="pagination.totalItems"
+                                ng-model="$parent.currentPage"
+                                ng-change="$parent.pagination.goto()"
+                                total-items="$parent.pagination.totalItems"
+                                max-size="$parent.pagination.maxSize"
+                                items-per-page="$parent.pagination.numPerPage"
+                                boundary-links="$parent.pagination.boundaryLinks"
+                                previous-text="&lsaquo;"
+                                next-text="&rsaquo;"
+                                first-text="&laquo;"
+                                last-text="&raquo;">
+                </uib-pagination>
+            </div>
+        </div>
         <div class="row" ng-show="notes">
             <ul class="list-group">
                 <li ng-repeat="note in notes track by note._id" class="list-group-item">

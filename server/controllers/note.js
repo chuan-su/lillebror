@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const Promise = require('bluebird');
 const Note = require('../models/note');
 const elasticsearch = require('../elasticsearch/types/note');
 
@@ -31,8 +32,9 @@ module.exports = {
     list(req,res) {
         var options = _.pick(req.query,['sort','direction','limit','range']);
         var date = req.query.date;
-        Note.listBy(date,options)
-            .then(results => res.status(200).json(results).end())
+        Promise.join( Note.listBy(date,options),
+                      Note.totalCount(date),
+                      (notes,count) => res.status(200).json({notes: notes,count: count}).end())
             .catch(err => res.status(500).json({error: err.message}).end());
     },
     search(req,res) {

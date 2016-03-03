@@ -33,13 +33,13 @@ noteSchema.post('findOneAndRemove',note => {
     cacheStore.delete(
         note.get('id'),
         (err,res) => {
-            if(err) console,log('es delete error',err);
+            if(err) console.log('es delete error',err);
         });    
 });
 
 noteSchema.statics.listBy = (date,options) => {
     date = date || new Date();
-    let limit = options.limit || 20,
+    let limit = options.limit || 2,
         range = options.range || 0,
         sort = options.sort || 'updatedAt',
         direction = options.direction || -1;
@@ -53,5 +53,11 @@ noteSchema.statics.listBy = (date,options) => {
         .exec()
         .then(results => results)
         .catch(error => {throw error;});
+};
+noteSchema.statics.totalCount = date => {
+    date = date || new Date();
+    return mongoose.models.Note.count({updatedAt:{$lt:date}})
+        .then(count => count)
+        .catch(error => { throw error;});
 };
 module.exports = mongoose.model('Note',noteSchema);

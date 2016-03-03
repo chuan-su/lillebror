@@ -16,8 +16,8 @@
         function add(note){
             return $http({method: 'POST',url: '/api/notes',data: note});
         };
-        function list(){
-            return $http({method: 'GET',url:'/api/notes'});
+        function list(range){
+            return $http({method: 'GET',url:'/api/notes',params:{range: range}});
         };
         function get(id){
             return $http({method:'GET',url:`/api/notes/${id}`});
