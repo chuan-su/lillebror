@@ -10,18 +10,13 @@
     "body-parser": "~1.0.0",
     "debug": "~0.7.4",
     "express": "~4.2.0",
-    "gulp-param": "^1.0.3",
+    "gulp": "^3.9.1",
     "mongoose": "^4.3.6",
     "morgan": "~1.0.0",
-    "request": "^2.69.0",
-    "static-favicon": "~1.0.0",
-    "xml2json": "^0.9.0"
+    "static-favicon": "~1.0.0"
   },
   "devDependencies": {
     "chai": "^3.4.1",
-    "gulp": "^3.9.0",
-    "mocha": "^2.3.4",
-    "sax": "^1.1.5",
-    "saxpath": "^0.6.3"
+    "mocha": "^2.3.4"
   }
 }
