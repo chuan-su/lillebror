@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form ng-submit="updateNote()">
+            <fieldset class="form-group">
+                <label><i class="fa fa-pencil"></i>&nbsp Note</label>
+                <textarea ng-model="note.body" class="form-control" rows="3"></textarea>
+            </fieldset>
+            <fieldset class="form-group">
+                <label><i class="fa fa-tags"></i>&nbspVocabularies</label>
+                <tags-input replace-spaces-with-dashes=false ng-model="note.vocabularies" placeholder="Add a verb"></tags-input>
+            </fieldset>
+            <fieldset class="form-group">
+                <label><i class="fa fa-tags"></i>&nbsp Tags</label>
+                <tags-input ng-model="note.tags"></tags-input>
+            </fieldset>
+            <div>
+                <a type="submit" class="btn btn-warning" href="#/">Cancel</a>
+                <button type="submit" class="btn btn-success">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

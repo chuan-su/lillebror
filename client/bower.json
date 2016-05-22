@@ -1,0 +1,35 @@
+{
+  "name": "lillebror",
+  "description": "swedish learning tool",
+  "main": "",
+  "authors": [
+    "Chuan <chuansu@icloud.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "lillebror",
+    "swedish"
+  ],
+  "homepage": "https://github.com/chuan-su/lillebror",
+  "moduleType": [
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "jquery": "^2.2.1",
+    "angular-route": "^1.5.0",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.5.0",
+    "ng-tags-input": "^3.0.0",
+    "angular-xeditable": "^0.1.10",
+    "angular-bootstrap": "^1.2.1"
+  }
+}

@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="row">
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+                <input ng-model="query" ng-change="searchNotes()" class="form-control" type="text" placeholder="Search notes">
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center">
+                <uib-pagination ng-if="pagination.totalItems"
+                                ng-model="$parent.currentPage"
+                                ng-change="$parent.pagination.goto()"
+                                total-items="$parent.pagination.totalItems"
+                                max-size="$parent.pagination.maxSize"
+                                items-per-page="$parent.pagination.numPerPage"
+                                boundary-links="$parent.pagination.boundaryLinks"
+                                previous-text="&lsaquo;"
+                                next-text="&rsaquo;"
+                                first-text="&laquo;"
+                                last-text="&raquo;">
+                </uib-pagination>
+            </div>
+        </div>
+        <div class="row" ng-show="notes">
+            <ul class="list-group">
+                <li ng-repeat="note in notes track by note._id" class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <span class="pull-right">
+                            <a class="btn btn-info btn-xs" href="#/notes/{{note._id}}"><i class="fa fa-pencil"></i></a>
+                        </span>
+                        <span ng-repeat="verb in note.vocabularies">{{verb}}{{$last ? '' : ','}}</span>
+                    </h4>
+                    <p class="small">{{note.body}}</p>
+                    <div>
+                        <span ng-repeat="tag in note.tags">
+                            <span class="label label-success" >{{tag}}</span>
+                        </span>
+                        <span class="pull-right">
+                            <a class="btn btn-danger btn-xs" ng-click="deleteNote(note._id)"><i class="fa fa-trash"></i></a>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

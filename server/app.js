@@ -1,13 +1,11 @@
-const express = require('express'),
-      path = require('path'),
+const path = require('path'),
       favicon = require('static-favicon'),
       logger = require('morgan'),
-      bodyParser = require('body-parser');
+      bodyParser = require('body-parser'),
+      express = require('express');
 
 
-const app = express();
-
-require('./models');
+var app = express();
 
 app.use(favicon());
 app.use(logger('dev'));
@@ -16,7 +14,7 @@ app.use(bodyParser.urlencoded());
 
 app.use('/api',require('./routes')());
 
-app.use(express.static(path.join(__dirname, '..','static')));
+app.use(express.static(path.join(__dirname, '..','client')));
 
 
 module.exports = app;
