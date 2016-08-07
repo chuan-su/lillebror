@@ -1,0 +1,15 @@
+version: '2'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongodb
+      - elasticsearch
+  mongodb:
+    image: mongo
+  elasticsearch:
+    image: elasticsearch
