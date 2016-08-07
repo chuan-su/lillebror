@@ -4,11 +4,11 @@
 
 Want to learn more ? [See the wiki](https://github.com/chuan-su/lillebror/wiki)
 
-## Build and Run
+### Build and Run ###
     
     $ docker-compose up
 
-## Stop the server
+### Stop the server ###
     
     $ docker-compose stop
     
