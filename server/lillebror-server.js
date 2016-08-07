@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const debug = require('debug')('lillebror'),
       mongoose = require('./models'),
-      dbURI = 'mongodb://localhost/lillebror';
+      dbURI = 'mongodb://mongodb:27017/lillebror';
 
 mongoose.connection.on('connected',() => console.log(`Mongoose connected to ${dbURI}`));
 
