@@ -1,6 +1,14 @@
 # lillebror
-![alt text](https://raw.githubusercontent.com/pushmatrix/fikascript/gh-pages/assets/img/flag.png)
 
-**lillebror** is a swedish-learning tool that helps manage your study notes and arranges daily review-tasks.
+**lillebror** is a swedish-learning tool that helps manage your study notes.
 
 Want to learn more ? [See the wiki](https://github.com/chuan-su/lillebror/wiki)
+
+## Build and Run
+    
+    $ docker-compose up
+
+## Stop the server
+    
+    $ docker-compose stop
+    
